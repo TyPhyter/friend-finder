@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3>SURVEY</h3>
+        <h5>Answer the question below to find your most compatible friend!</h5>
+
+        <label class="mb-2">Name</label>
+        <input type="text" id="name" class="form-control mb-2" placeholder="required" required>
+        <label class="mb-2">Link to photo</label>
+        <input type="text" id="photo-link" class="form-control mb-4" placeholder="required" required>
+
+        <h4>Question 1</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 2</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 3</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 4</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 5</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 6</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 7</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 8</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 9</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <h4>Question 10</h4>
+        <p>Question Text</p>
+        <select class="select mb-4">
+            <option value="">Select a score</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary">SUBMIT</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var url = "http://localhost:8080/api/friends"
+        $(document).on('click', '#submit-btn', function (evt) {
+            evt.preventDefault();
+
+            var data = {};
+            data.name = $('#name').val();
+            data.photoLink = $('#photo-link').val();
+            data.scores = [];
+
+            $('.select').each(function () {
+                data.scores.push($(this).val());
+            });
+
+            console.log(data.scores);
+
+            $.post(url, data)
+                .then((res) => {
+                    console.log(res);
+                    //use this data to render the modal with the best friend
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+
+    </script>
+
+</body>
+
+</html>

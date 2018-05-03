@@ -1,10 +1,15 @@
 const express = require('express');
+const path = require('path');
 let router = express.Router();
 
-//routes will start with /api..
+router.get('/', (req, res,) => {
+    res.type('.html');
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+});
 
-// router.get('/friends', (req, res,) => {
-//     res.json('./app/data/friends.js');
-// });
+router.get('/survey', (req, res,) => {
+    res.type('.html');
+    res.sendFile(path.join(__dirname, '../public/survey.html'));
+});
 
 module.exports = router;
