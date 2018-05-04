@@ -14,7 +14,8 @@
 <body>
     <div class="container">
         <h3>SURVEY</h3>
-        <h5>Answer the question below to find your most compatible friend!</h5>
+        <h5>Below are 10 super-duper top-secret mighty-morphing questions that only a good ranger would know the answer to.</h5>
+        <h5>Fill out the survey to find your new best Power-Friend!</h5> 
 
         <label class="mb-2">Name</label>
         <input type="text" id="name" class="form-control mb-2" placeholder="required" required>
@@ -22,7 +23,7 @@
         <input type="text" id="photo-link" class="form-control mb-4" placeholder="required" required>
 
         <h4>Question 1</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -33,7 +34,7 @@
         </select>
 
         <h4>Question 2</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -44,7 +45,7 @@
         </select>
 
         <h4>Question 3</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -55,7 +56,7 @@
         </select>
 
         <h4>Question 4</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -66,7 +67,7 @@
         </select>
 
         <h4>Question 5</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -77,7 +78,7 @@
         </select>
 
         <h4>Question 6</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -88,7 +89,7 @@
         </select>
 
         <h4>Question 7</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -99,7 +100,7 @@
         </select>
 
         <h4>Question 8</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -110,7 +111,7 @@
         </select>
 
         <h4>Question 9</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -121,7 +122,7 @@
         </select>
 
         <h4>Question 10</h4>
-        <p>Question Text</p>
+        <p>[redacted]</p>
         <select class="select mb-4">
             <option value="">Select a score</option>
             <option value="5">5</option>
@@ -130,9 +131,21 @@
             <option value="2">2</option>
             <option value="1">1</option>
         </select>
+        <br>
 
-        <button type="submit" id="submit-btn" class="btn btn-primary">SUBMIT</button>
+        <button type="submit" id="submit-btn" class="btn btn-primary mb-5">SUBMIT</button>
+        <div class="modal fade" id="results-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">Your New Best Friend!</div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -143,24 +156,31 @@
 
     <script>
         var url = "http://localhost:8080/api/friends"
+        //POST survey answers on submit button click
         $(document).on('click', '#submit-btn', function (evt) {
             evt.preventDefault();
 
             var data = {};
             data.name = $('#name').val();
-            data.photoLink = $('#photo-link').val();
+            data.photo = $('#photo-link').val();
             data.scores = [];
 
             $('.select').each(function () {
                 data.scores.push($(this).val());
             });
 
-            console.log(data.scores);
-
             $.post(url, data)
                 .then((res) => {
-                    console.log(res);
+
                     //use this data to render the modal with the best friend
+                    $('#results-modal .modal-body').html(`
+                        <div class="container">
+                            <img id="friend-pic" src="${res.photo}">
+                            <p>Name: ${res.name}</p>
+                        </div>
+                    `);
+                    $('#results-modal').modal({ show: true });
+
                 })
                 .catch((err) => {
                     console.log(err);

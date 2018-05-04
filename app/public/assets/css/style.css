@@ -1,3 +1,18 @@
 body {
     background: #aaa;
 }
+
+.modal {
+    /* this bug is super annoying */
+    padding-right: 0 !important;
+    text-align: center;
+}
+
+.modal-header {
+    text-align: center;
+}
+
+#friend-pic {
+    width: 100%;
+    max-width: 100%;
+}

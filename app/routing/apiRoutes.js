@@ -2,19 +2,18 @@ const express = require('express');
 let router = express.Router();
 let friends = require('../data/friends.js');
 
-//routes will start with /api..
+//routes mounted on /api
 
-router.get('/friends', (req, res,) => {
+router.get('/friends', (req, res) => {
+    //returns entire friend array as json object
     res.json(friends);
 });
 
-router.post('/friends', (req, res,) => {
+router.post('/friends', (req, res) => {
     //handle survey posts
     //handle compatibility
-    console.log(req.body);
     let newFriend = req.body;
 
-    
     let compatibilityScore;
     let compatibilityScoresArray = [];
     friends.forEach((friend) => {
@@ -40,13 +39,9 @@ router.post('/friends', (req, res,) => {
             lowestScore = compatibilityScoresArray[i];
         }
     }
-    //return user data
-    console.log('CompScore:' + compatibilityScore);
-    console.log(compatibilityScoresArray);
-    
+    //add submission to array of friends
     friends.push(newFriend);
-    console.log(friends);
-    
+    //return most compatible friend data
     res.json(friends[lowestIndex]);
 });
 
